@@ -25,7 +25,7 @@ class UserFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'document_type' => fake()->randomElement(['CC', 'CE', 'TI', 'PP', 'NIT']),
+            'document_type' => fake()->randomElement(['CC', 'CE', 'PP', 'NIT']),
             'document' => fake()->unique()->randomNumber(9),
             'id_card' => fake()->unique()->randomNumber(6),
             'role' => fake()->randomElement(['admin', 'user']),
