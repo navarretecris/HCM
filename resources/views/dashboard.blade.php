@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-@section('nameModule', 'Inicio')
+@section('nameModule', 'Home')
 
 @section('content')
 <h1>Contenido Principal</h1>

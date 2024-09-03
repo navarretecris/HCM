@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Htpp\Requests\UserRequest;
+use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
@@ -34,6 +34,7 @@ class UserController extends Controller
     {
         //
         //dd($request->all());
+        // crear con ORM
 
         $user = new User();
         $user->name = $request->name;
@@ -46,7 +47,7 @@ class UserController extends Controller
         $user->password = bcrypt($request->password);
 
         if($user->save()){
-            return redirect('users')->with('message', 'El usuario '.$user->name.'fue creado con éxito');
+            return redirect('users')->with('message', 'User '.$user->name.' Successfully Created');
         }
     }      
 
@@ -82,7 +83,7 @@ class UserController extends Controller
         $user->email = $request->email;
 
         if($user->save()){
-            return redirect('users')->with('message', 'El usuario '.$user->name.'fue actualizado con éxito');
+            return redirect('users')->with('message', 'User '.$user->name.' Successfully updated');
         }
 
     }
@@ -90,8 +91,16 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(user $user)
     {
         //
+        if($user->delete()){
+            return redirect('users')->with('message', 'User '.$user->name.' Successfully deleted');
+        }
+    }
+
+    public function search(Request $request){
+        $users = User::names($request->q)->get();
+        return view('users.search')->with('users', $users);
     }
 }

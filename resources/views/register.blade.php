@@ -27,10 +27,10 @@
                         <select id="document_type" class="form-select @error('document_type') is-invalid @enderror"
                             name="document_type" required>
                             <option value="">{{ __('Select') }}</option>
-                            <option value="CC">{{ __('Citizenship Card') }}</option>
-                            <option value="CE">{{ __('Foreigner ID') }}</option>
-                            <option value="PP">{{ __('Passport') }}</option>
-                            <option value="NIT">{{ __('Tax ID') }}</option>
+                            <option value="CC">{{ __('CC') }}</option>
+                            <option value="CE">{{ __('CE') }}</option>
+                            <option value="PP">{{ __('PP') }}</option>
+                            <option value="NIT">{{ __('NIT') }}</option>
                         </select>
                         @error('document_type')
                             <span class="invalid-feedback" role="alert">
@@ -69,8 +69,8 @@
                         <select id="role" class="form-select @error('role') is-invalid @enderror" name="role"
                             required>
                             <option value="">{{ __('Select') }}</option>
-                            <option value="admin">{{ __('Administrator') }}</option>
-                            <option value="user">{{ __('User') }}</option>
+                            <option value="Admin">{{ __('Administrator') }}</option>
+                            <option value="User">{{ __('User') }}</option>
                         </select>
                         @error('role')
                             <span class="invalid-feedback" role="alert">
@@ -85,8 +85,8 @@
                         <select id="status" class="form-select @error('status') is-invalid @enderror" name="status"
                             required>
                             <option value="">{{ __('Select') }}</option>
-                            <option value="active">{{ __('Active') }}</option>
-                            <option value="inactive">{{ __('Inactive') }}</option>
+                            <option value="Active">{{ __('Active') }}</option>
+                            <option value="Inactive">{{ __('Inactive') }}</option>
                         </select>
                         @error('status')
                             <span class="invalid-feedback" role="alert">

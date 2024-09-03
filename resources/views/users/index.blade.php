@@ -3,7 +3,6 @@
 
 @section('content')
     <div class="user-cards">
-
         @foreach ($users as $user)
             <div class="user-card">
                 <div class="user-card-content">
@@ -11,14 +10,18 @@
                     <p>Document Type: {{ $user->document_type }}</p>
                     <p>Document: {{ $user->document }}</p>
                     <p>ID Card: {{ $user->id_card }}</p>
-                    <p>Role: {{ $user->role }}</p>
-                    <p>Status: {{ $user->status }}</p>
+                    <p>Role: {{ ucfirst(strtolower($user->role)) }}</p>
+                    <p>Status: {{ ucfirst(strtolower($user->status)) }}</p>
                     <p>Email: {{ $user->email }}</p>
                     <p hidden>id: {{ $user->id }}</p>
                 </div>
                 <div class="user-card-actions">
                     <button class="edit-btn">Edit</button>
                     <button class="delete-btn">Delete</button>
+                    <form method="POST" action="{{ url('users/' . $user->id) }}" style="display: none">
+                        @csrf
+                        @method('DELETE')
+                    </form>
                 </div>
             </div>
         @endforeach
@@ -74,7 +77,7 @@
             <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
                 autocomplete="new-password" />
 
-            <x-input-error :messages="$errors->get('passwors')" class="mt-2"/>
+            <x-input-error :messages="$errors->get('passwors')" class="mt-2" />
         </div>
 
         <!-- Confirm Password -->
@@ -84,7 +87,7 @@
             <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation"
                 required autocomplete="new-password" />
 
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2"/>
+            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
 
@@ -93,7 +96,7 @@
 @endsection
 
 @section('formEdit')
-    <form method="POST" id="editForm" action="" data-action-base="{{ url('users/')}}">
+    <form method="POST" id="editForm" action="" data-action-base="{{ url('users/') }}">
         @csrf
         @method('PUT')
 
@@ -108,8 +111,8 @@
             <label for="edit_document_type">Document Type</label>
             <select id="edit_document_type" name="document_type">
                 <option value="CC">CC</option>
-                <option value="TI">CE</option>
-                <option value="CE">PP</option>
+                <option value="CE">CE</option>
+                <option value="PP">PP</option>
                 <option value="NIT">NIT</option>
             </select>
         </div>
@@ -127,16 +130,16 @@
         <div>
             <label for="edit_role">Role</label>
             <select id="edit_role" name="role">
-                <option value="administrator">Administrator</option>
-                <option value="user">User</option>
+                <option value="Admin">Admin</option>
+                <option value="User">User</option>
             </select>
         </div>
 
         <div>
             <label for="edit_status">Status</label>
             <select id="edit_status" name="status">
-                <option value="active">Active</option>
-                <option value="inactive">Inactive</option>
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
             </select>
         </div>
 
@@ -147,8 +150,48 @@
         </div>
 
         <div class="modal-actions">
-            <button type="submit" class="save-btn">Guardar</button>
-            <button type="button" class="cancel-btn">Cancelar</button>
+            <button type="submit" class="save-btn">Update</button>
+            <button type="button" class="cancel-btn">Cancel</button>
         </div>
     </form>
+@endsection
+
+@section('js')
+
+    <script>
+        $('div').on('click', '.delete-btn', function() {
+            $name = $(this).parent().parent().find('h3').text().split(':').pop().trim();
+
+            Swal.fire({
+                title: "¿Are you sure? " + $name + " will be deleted!",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $(this).next().submit();
+                }
+            });
+        });
+
+        // reconocer el cambio de tecla de búsqueda
+        $('#qsearch').on('keyup', function(e) {
+            e.preventDefault();
+            $query = $(this).val();
+            $token = $('input[name=_token]').val();
+
+            $.post('users/search', {
+                    q: $query,
+                    _token: $token
+                },
+                function(data) {
+                    $('.content').empty().append(data);
+                }
+            )
+        });
+    </script>
+
 @endsection

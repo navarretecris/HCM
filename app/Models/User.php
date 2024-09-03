@@ -49,4 +49,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function scopeNames($users, $query){
+        if(trim($query)){
+            $users->where('name', 'LIKE','%'.$query.'%')
+            ->orWhere('email', 'LIKE', '%'.$query.'%')
+            ->orWhere('document', 'LIKE', '%'.$query.'%');
+        }
+    }
 }
