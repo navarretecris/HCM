@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ToolController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,11 +19,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resources([
         'users' => UserController::class,
-        'tools' => ToolController::class,
+       
     ]);
 
     Route::post('users/search', [UserController::class, 'search']);   
-    Route::post('tools/search', [ToolController::class, 'search']);
+   
 
 
 });
