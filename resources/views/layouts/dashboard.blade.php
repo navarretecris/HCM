@@ -17,9 +17,9 @@
                 <div class="sidebar-item" onclick="window.location.href='{{ route('dashboard') }}'">
                     Home
                 </div>
-                <div class="sidebar-item" @if (Route::currentRouteName() != 'tools.index') onclick="window.location.href='{{ route('dashboard') }}'" @endif>
-                    Tools
-                    @if (Route::currentRouteName() == 'tools.index')
+                <div class="sidebar-item" @if (Route::currentRouteName() != 'books.index') onclick="window.location.href='{{ route('books.index') }}'" @endif>
+                    Books
+                    @if (Route::currentRouteName() == 'books.index')
                         <div class="submenu">
                             <div class="submenu-item">Create</div>
                         </div>

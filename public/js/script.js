@@ -40,7 +40,6 @@ document.addEventListener("click", function (event) {
     }
 });
 
-
 // Selecciona todos los elementos que disparan el modal
 document.querySelectorAll(".submenu-item").forEach((item) => {
     if (item.textContent === "Create") {
@@ -51,9 +50,11 @@ document.querySelectorAll(".submenu-item").forEach((item) => {
 });
 
 // Cierra el modal al hacer clic en el botón de cerrar
-document.getElementById("close-btn-crear").addEventListener("click", function () {
-    document.getElementById("modal").style.display = "none";
-});
+document
+    .getElementById("close-btn-crear")
+    .addEventListener("click", function () {
+        document.getElementById("modal").style.display = "none";
+    });
 
 // Cierra el modal al hacer clic fuera del contenido del modal
 window.addEventListener("click", function (event) {
@@ -65,18 +66,31 @@ window.addEventListener("click", function (event) {
 const currentPath = window.location.pathname;
 
 if (currentPath === "/users") {
-
     document.querySelectorAll(".edit-btn").forEach((button) => {
         button.addEventListener("click", function () {
             const card = this.closest(".user-card");
             const name = card.querySelector("h3").innerText.split(": ")[1];
-            const document_type = card.querySelector("p:nth-child(2)").innerText.split(": ")[1];
-            const documento = card.querySelector("p:nth-child(3)").innerText.split(": ")[1];
-            const id_card = card.querySelector("p:nth-child(4)").innerText.split(": ")[1];
-            const role = card.querySelector("p:nth-child(5)").innerText.split(": ")[1];
-            const status = card.querySelector("p:nth-child(6)") .innerText.split(": ")[1];
-            const email = card.querySelector("p:nth-child(7)").innerText.split(": ")[1];
-            const id = card.querySelector("p:nth-child(8)").innerText.split(": ")[1];
+            const document_type = card
+                .querySelector("p:nth-child(2)")
+                .innerText.split(": ")[1];
+            const documento = card
+                .querySelector("p:nth-child(3)")
+                .innerText.split(": ")[1];
+            const id_card = card
+                .querySelector("p:nth-child(4)")
+                .innerText.split(": ")[1];
+            const role = card
+                .querySelector("p:nth-child(5)")
+                .innerText.split(": ")[1];
+            const status = card
+                .querySelector("p:nth-child(6)")
+                .innerText.split(": ")[1];
+            const email = card
+                .querySelector("p:nth-child(7)")
+                .innerText.split(": ")[1];
+            const id = card
+                .querySelector("p:nth-child(8)")
+                .innerText.split(": ")[1];
 
             document.getElementById("edit_name").value = name;
             document.getElementById("edit_id").value = id;
@@ -87,40 +101,67 @@ if (currentPath === "/users") {
             document.getElementById("edit_status").value = status;
             document.getElementById("edit_email").value = email;
 
-            const baseUrl = document.getElementById("editForm").getAttribute("data-action-base");
+            const baseUrl = document
+                .getElementById("editForm")
+                .getAttribute("data-action-base");
             document.getElementById("editForm").action = `${baseUrl}/${id}`;
             document.getElementById("editModal").style.display = "flex";
         });
     });
-
 }
 
-if (currentPath === '/tools') {
+if (currentPath === "/books") {
     document.querySelectorAll(".edit-btn").forEach((button) => {
         button.addEventListener("click", function () {
             const card = this.closest(".user-card");
-            const name = card.querySelector("h3").innerText.split(": ")[1];
-            const marca = card.querySelector("p:nth-child(2)").innerText.split(": ")[1];
-            const cantidad = card.querySelector("p:nth-child(3)").innerText.split(": ")[1];
-            const precio = card.querySelector("p:nth-child(4)").innerText.split(": ")[1];
-            const estado = card.querySelector("p:nth-child(5)").innerText.split(": ")[1];
-            const id = card.querySelector("p:nth-child(6)").innerText.split(": ")[1];
+            const title = card.querySelector("h3").innerText.split(": ")[1];
+            const author = card
+                .querySelector("p:nth-child(2)")
+                .innerText.split(": ")[1];
+            const isbn = card
+                .querySelector("p:nth-child(3)")
+                .innerText.split(": ")[1];
+            const quantity = card
+                .querySelector("p:nth-child(4)")
+                .innerText.split(": ")[1];
+            const price = card
+                .querySelector("p:nth-child(5)")
+                .innerText.split(": ")[1];
+            const pages = card
+                .querySelector("p:nth-child(6)")
+                .innerText.split(": ")[1];
+            const language = card
+                .querySelector("p:nth-child(7)")
+                .innerText.split(": ")[1];
+            const status = card
+                .querySelector("p:nth-child(8)")
+                .innerText.split(": ")[1];
+            const id = card
+                .querySelector("p:nth-child(9)")
+                .innerText.split(": ")[1];
 
-            document.getElementById("edit_name").value = name;
-            document.getElementById("edit_marca").value = marca;
-            document.getElementById("edit_cantidad").value = cantidad;
-            document.getElementById("edit_precio").value = precio;
-            document.getElementById("edit_estado").value = estado;
+            document.getElementById("edit_title").value = title;
+            document.getElementById("edit_author").value = author;
+            document.getElementById("edit_isbn").value = isbn;
+            document.getElementById("edit_quantity").value = quantity;
+            document.getElementById("edit_price").value = price;
+            document.getElementById("edit_pages").value = pages;
+            document.getElementById("edit_language").value = language;
+            document.getElementById("edit_status").value = status;
             document.getElementById("edit_id").value = id;
 
-            const baseUrl = document.getElementById("editForm").getAttribute("data-action-base");
+            const baseUrl = document
+                .getElementById("editForm")
+                .getAttribute("data-action-base");
             document.getElementById("editForm").action = `${baseUrl}/${id}`;
             document.getElementById("editModal").style.display = "flex";
-      });
+        });
     });
-  }
+}
 
-document.querySelector(".close-btn-actualizar").addEventListener("click", function () {
+document
+    .querySelector(".close-btn-actualizar")
+    .addEventListener("click", function () {
         document.getElementById("editModal").style.display = "none";
         console.log("click");
     });

@@ -22,29 +22,28 @@ class UserRequest extends FormRequest
      */
     public function rules(): array
     {
-        if($this->method() == 'PUT'){
+        if ($this->method() == 'PUT') {
             return [
                 //
                 'name' => ['required', 'string', 'max:255'],
                 'document_type' => ['required', 'string', 'max:255'],
-                'document' => ['required', 'string', 'max:255', 'unique:'.User::class.',document,'.$this->id],
+                'document' => ['required', 'string', 'max:255', 'unique:' . User::class . ',document,' . $this->id],
                 'id_card' => ['required', 'string', 'max:255'],
                 'role' => ['required', 'string', 'max:255'],
                 'status' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class.',email,'.$this->id],
-            ];
-        }else{
-            return [
-                //
-                'name' => ['required', 'string', 'max:255'],
-                'document_type' => ['required', 'string', 'max:255'],
-                'document' => ['required', 'string', 'max:255', 'unique:'.User::class],
-                'id_card' => ['required', 'string', 'max:255'],
-                'role' => ['required', 'string', 'max:255'],
-                'status' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'string', 'lowercase' , 'email', 'max:255', 'unique:'.User::class],
-                'password' => ['required', 'confirmed'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class . ',email,' . $this->id],
             ];
         }
+        return [
+            //
+            'name' => ['required', 'string', 'max:255'],
+            'document_type' => ['required', 'string', 'max:255'],
+            'document' => ['required', 'string', 'max:255', 'unique:' . User::class],
+            'id_card' => ['required', 'string', 'max:255'],
+            'role' => ['required', 'string', 'max:255'],
+            'status' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+            'password' => ['required', 'confirmed'],
+        ];
     }
 }
