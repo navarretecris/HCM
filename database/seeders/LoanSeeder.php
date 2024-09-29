@@ -27,11 +27,5 @@ class LoanSeeder extends Seeder
         $loan->book_id = $book->id;
         $loan->save();
 
-        $loan = new Loan();
-        $loan->loan_date = '2023-09-24';
-        $loan->status = true;
-        $loan->user_id = $user->id;
-        $loan->book_id = $book->id;
-        $loan->save();
     }
 }

@@ -47,5 +47,49 @@ class BookSeeder extends Seeder
         $book->status = 'Available';
         $book->save();
 
+        $book = new Book();
+        $book->title = 'The Catcher in the Rye';
+        $book->author = 'J.D. Salinger';
+        $book->isbn = '9780316769488';
+        $book->quantity = 3;
+        $book->price = '8.99';
+        $book->pages = '277';
+        $book->language = 'en';
+        $book->status = 'Available';
+        $book->save();
+
+        $book = new Book();
+        $book->title = 'Lord of the Flies';
+        $book->author = 'William Golding';
+        $book->isbn = '9780399501487';
+        $book->quantity = 6;
+        $book->price = '10.99';
+        $book->pages = '224';
+        $book->language = 'en';
+        $book->status = 'Available';
+        $book->save();
+
+        $book = new Book();
+        $book->title = 'Animal Farm';
+        $book->author = 'George Orwell';
+        $book->isbn = '9780451526342';
+        $book->quantity = 4;
+        $book->price = '9.99';
+        $book->pages = '141';
+        $book->language = 'en';
+        $book->status = 'Available';
+        $book->save();
+
+        $book = new Book();
+        $book->title = 'Brave New World';
+        $book->author = 'Aldous Huxley';
+        $book->isbn = '9780060850524';
+        $book->quantity = 8;
+        $book->price = '12.99';
+        $book->pages = '288';
+        $book->language = 'en';
+        $book->status = 'Available';
+        $book->save();
+
     }
 }

@@ -1,17 +1,114 @@
+/* Mantener la imagen de fondo con su color original */
+body {
+    background-image: url('{{ asset('icon/bookcase.png') }}'); /* URL de la imagen de fondo */
+    background-size: cover; /* Cubrir todo el fondo */
+    background-position: center; /* Centrar la imagen */
+    background-attachment: fixed; /* Fijar la imagen al fondo */
+    background-repeat: no-repeat; /* Evitar que la imagen se repita */
+}
+
+/* Estilo para la capa de superposición, pero sin afectar la imagen de fondo */
 .overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* Aumenta la opacidad para mayor contraste */
+    background-color: rgba(0, 0, 0, 0); /* Sin opacidad para no afectar la imagen */
     z-index: 1;
 }
 
+/* Estilo personalizado de la tarjeta para un formulario más compacto y más transparente */
+.custom-card {
+    background-color: rgba(255, 255, 255, 0.45); /* Aumentamos la transparencia a 45% */
+    backdrop-filter: blur(3px); /* Desenfoque suave */
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Bordes más suaves */
+    padding: 15px; /* Reducir padding interno */
+    border-radius: 8px; /* Esquinas redondeadas */
+    max-width: 380px; /* Ancho máximo reducido */
+    margin: 20px auto; /* Ajustar margen superior e inferior */
+}
+
+/* Aseguramos que todos los inputs y selects tengan el mismo ancho y alto */
+.custom-card input, 
+.custom-card select {
+    width: 100%; /* Todos los campos ocuparán el 100% del espacio disponible */
+    height: 40px; /* Uniformizamos la altura de los campos */
+    padding: 10px; /* Espaciado interno uniforme */
+    font-size: 0.875rem; /* Tamaño de fuente uniforme */
+    background-color: rgba(255, 255, 255, 0.7); /* Añadimos transparencia a los campos */
+    border-radius: 4px; /* Bordes ligeramente redondeados */
+    border: 1px solid #ccc; /* Borde estándar */
+    box-sizing: border-box; /* Aseguramos que el padding no altere el tamaño total */
+    color: #000; /* Color del texto negro para asegurar legibilidad */
+}
+
+/* Ajuste del tamaño del checkbox */
+.custom-card .form-check-input {
+    width: 20px; /* Ancho reducido */
+    height: 20px; /* Alto reducido */
+    margin-right: 10px; /* Espaciado con respecto al texto */
+    vertical-align: middle; /* Alinear el checkbox verticalmente con el texto */
+}
+
+/* Flexbox para alinear el checkbox y el texto */
+.custom-card .form-check {
+    display: flex;
+    align-items: center; /* Alinear el checkbox con el texto */
+    gap: 10px; /* Espaciado entre el checkbox y el texto */
+}
+
+/* Botón de acción */
+.custom-card .btn {
+    width: 100%; /* Botón ocupa todo el ancho disponible */
+    height: 40px; /* Igual altura que los inputs y selects */
+    font-size: 0.9rem; /* Texto acorde con el resto del formulario */
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 4px;
+    border: none;
+}
+
+/* Ajuste adicional para el botón cuando está en estado hover */
+.custom-card .btn:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para los enlaces */
+.custom-card a.btn-link {
+    display: inline-block;
+    padding: 0; /* Sin padding para que no parezca un botón */
+    margin-top: 10px;
+    font-size: 0.875rem;
+    color: #004085; /* Color azul más claro */
+    text-decoration: underline; /* Subrayado para el estilo de enlace */
+    background: none; /* Sin fondo */
+    border: none; /* Sin bordes */
+}
+
+/* Cambiamos el color del enlace al pasar el cursor por encima */
+.custom-card a.btn-link:hover {
+    color: #ffffff; /* Color más oscuro en hover */
+    text-decoration: underline; /* Subrayado visible en hover */
+}
+
+/* Evitamos que el link parezca un botón */
+.custom-card .btn-link {
+    font-weight: normal; /* Fuente normal para enlaces */
+    text-align: center;
+    width: auto;
+    height: auto;
+    color: #ffffff; /* Cambiamos el color del enlace a blanco para mejor visibilidad */
+}
+
+/* Sombra de texto para mejor visibilidad */
 .text-shadow {
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 }
 
+/* Animación de marquee (si es necesario) */
 .marquee {
     width: 50%;
     overflow: hidden;
@@ -20,7 +117,11 @@
 
 .marquee-inner {
     display: flex;
-    animation: marquee 15s linear infinite; /* Ajusta la velocidad aquí si lo deseas */
+    animation: marquee 15s linear infinite;
+}
+
+.marquee-inner:hover {
+    animation-play-state: paused;
 }
 
 .marquee-inner span {
@@ -28,24 +129,29 @@
     color: #ffffff;
     font-size: 18px;
     font-weight: bold;
-    text-shadow: inherit; /* Hereda la sombra de texto de la clase .text-shadow */
+    text-shadow: inherit;
     letter-spacing: 1px;
 }
 
 @keyframes marquee {
-    from { transform: translateX(100%); }
-    to { transform: translateX(-100%); }
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
 }
 
+/* Estilo del texto con sombra heredada */
 .text-right h1, 
 .text-right small {
-    text-shadow: inherit; /* Hereda la sombra de texto de la clase .text-shadow */
+    text-shadow: inherit;
 }
 
-.card-body {
-    padding: 1.5rem;
+/* Estilos para la imagen decorativa */
+.decor-img {
+    max-width: 150px; /* Ajustamos el tamaño máximo de la imagen */
+    border-radius: 15px; /* Bordes redondeados */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Añadimos una ligera sombra */
+    margin: 0 auto; /* Centramos la imagen */
 }
-
-.card-header {
-    background-color: rgba(255, 255, 255, 0.9);
-   

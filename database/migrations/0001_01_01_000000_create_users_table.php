@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('id_card')->unique();
             $table->string('role');
             $table->string('status');
+            $table->string('photo')->default('/img/no-photo.png');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

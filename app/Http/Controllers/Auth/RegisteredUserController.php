@@ -40,6 +40,14 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        if ($request->hasFile('photo')) {
+            $photo = time().'.'.$request->photo->extension();
+            $request->photo->move(public_path('img'), $photo);
+            $photo = '/img/'.$photo;
+        } else {
+            $photo = '/img/no-photo.png';
+        }
+
         $user = User::create([
             'name' => $request->name,
             'document_type' => $request->document_type,
@@ -47,6 +55,7 @@ class RegisteredUserController extends Controller
             'id_card' => $request->id_card,
             'role' => $request->role,
             'status' => $request->status,
+            'photo' => $photo,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);

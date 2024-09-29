@@ -413,6 +413,16 @@ table tr:hover {
     flex-grow: 1; /* Para que el contenido se ajuste */
 }
 
+.user-card-content figure {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+        border-radius: 10px;
+        object-fit: cover;
+    }
+}
+
 /* Action buttons */
 .edit-btn,
 .delete-btn {
@@ -460,6 +470,7 @@ table tr:hover {
 .modal-content input[type="number"],
 .modal-content input[type="date"],
 .modal-content input[type="password"],
+.modal-content input[type="file"],
 .modal-content select,
 .modal-content textarea {
     width: 100%; /* Asegura que todos los inputs y selects ocupen el mismo ancho */
@@ -502,3 +513,103 @@ table tr:hover {
 .close-btn-actualizar:hover {
     color: #000;
 }
+
+
+
+/* VISTA DEL HOME*/
+/* Contenedor de estadísticas rápidas sin animaciones */
+.quick-stats {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Espacio entre los elementos */
+}
+
+.quick-stat-item {
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo ligeramente transparente */
+    padding: 20px;
+    border-radius: 10px;
+    width: calc(33.333% - 20px); /* Asegura que los elementos se distribuyan equitativamente */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Añade sombra para separar del fondo */
+}
+
+.quick-stat-item .icon {
+    flex-shrink: 0;
+    margin-right: 15px;
+}
+
+.quick-stat-item .icon img {
+    max-width: 50px; /* Tamaño del ícono */
+}
+
+.stat-info {
+    flex-grow: 1;
+}
+
+.stat-info h3 {
+    margin: 0 0 10px;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.stat-info p {
+    margin: 0 0 15px;
+}
+
+.stat-info a {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #007bff; /* Color del botón */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.stat-info a:hover {
+    background-color: #0056b3; /* Cambia de color al hacer hover */
+}
+
+/* Featured books styling */
+.featured-books {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.book-card {
+    flex: 1 1 calc(25% - 20px); /* Ajusta las cards de los libros para que se alineen bien */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.book-card img {
+    max-width: 100%;
+    height: auto;
+    
+    border-bottom: 1px solid #ddd;
+}
+
+/* Estilo para los botones */
+.btn {
+    padding: 10px 20px;
+    background-color: #007bff; /* Color del botón */
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 10px; /* Borde redondeado */
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Color del botón al hacer hover */
+    cursor: pointer;
+}
+.quick-stat-item .icon img {
+    width: 60px; /* Puedes ajustar el tamaño que prefieras */
+    height: 60px; /* Asegúrate de que las proporciones sean correctas */
+    border-radius: 50px;
+}
+

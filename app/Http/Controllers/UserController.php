@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
+use PDF;
+use App\Exports\UserExports;
 
 class UserController extends Controller
 {
@@ -46,10 +48,10 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
 
-        if($user->save()){
-            return redirect('users')->with('message', 'User '.$user->name.' Successfully Created');
+        if ($user->save()) {
+            return redirect('users')->with('message', 'User ' . $user->name . ' Successfully Created');
         }
-    }      
+    }
 
     /**
      * Display the specified resource.
@@ -74,18 +76,26 @@ class UserController extends Controller
     public function update(UserRequest $request, User $user)
     {
         //
+        if ($request->hasFile('photo')) {
+            $photo = time() . '.' . $request->photo->extension();
+            $request->photo->move(public_path('img'), $photo);
+            $photo = '/img/' . $photo;
+        } else {
+            $photo = $user->photo;
+        }
+
         $user->name = $request->name;
         $user->document_type = $request->document_type;
         $user->document = $request->document;
         $user->id_card = $request->id_card;
         $user->role = $request->role;
         $user->status = $request->status;
+        $user->photo = $photo;
         $user->email = $request->email;
 
-        if($user->save()){
-            return redirect('users')->with('message', 'User '.$user->name.' Successfully updated');
+        if ($user->save()) {
+            return redirect('users')->with('message', 'User ' . $user->name . ' Successfully updated');
         }
-
     }
 
     /**
@@ -94,13 +104,26 @@ class UserController extends Controller
     public function destroy(user $user)
     {
         //
-        if($user->delete()){
-            return redirect('users')->with('message', 'User '.$user->name.' Successfully deleted');
+        if ($user->delete()) {
+            return redirect('users')->with('message', 'User ' . $user->name . ' Successfully deleted');
         }
     }
 
-    public function search(Request $request){
+    public function search(Request $request)
+    {
         $users = User::names($request->q)->get();
         return view('users.search')->with('users', $users);
+    }
+
+    public function pdf()
+    {
+        $users = User::all();
+        $pdf = PDF::loadView('users.pdf', compact('users'));
+        return $pdf->download('allusers.pdf');
+    }
+
+    public function excel()
+    {
+        return \Excel::download(new UserExports, 'allusers.xlsx');
     }
 }

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    
     <script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
 </head>
 
@@ -54,7 +55,7 @@
                     <input type="text" placeholder="Search..." class="search-input" id="qsearch">
                 </div>
                 <div class="user-info">
-                    <img src="{{ asset('icon/profile.png') }}" alt="Foto de Usuario" class="user-photo" id="user-photo">
+                    <img src="{{ asset(Auth::user()->photo) }}" alt="Foto de Usuario" class="user-photo" id="user-photo">
                     <div class="dropdown" id="dropdown">
                         <div class="dropdown-menu">
                             <button class="dropdown-item">{{ Auth::User()->name }}</button>

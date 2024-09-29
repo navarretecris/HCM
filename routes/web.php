@@ -32,5 +32,10 @@ Route::middleware('auth')->group(function () {
 
 });
 
+// exportaciones excel y pdf
+
+Route::get('exports/users/pdf', [UserController::class, 'pdf']);
+Route::get('exports/users/excel', [UserController::class, 'excel']);
+
 
 require __DIR__.'/auth.php';

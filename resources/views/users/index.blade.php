@@ -6,6 +6,9 @@
         @foreach ($users as $user)
             <div class="user-card">
                 <div class="user-card-content">
+                    <figure>
+                        <img src="{{ asset($user->photo) }}" alt="" height="50px">
+                    </figure>
                     <h3>Name: {{ $user->name }}</h3>
                     <p>Document Type: {{ $user->document_type }}</p>
                     <p>Document: {{ $user->document }}</p>
@@ -96,11 +99,16 @@
 @endsection
 
 @section('formEdit')
-    <form method="POST" id="editForm" action="" data-action-base="{{ url('users/') }}">
+    <form method="POST" id="editForm" action="" data-action-base="{{ url('users/') }}" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
         <input type="hidden" id="edit_id" name="id" value="">
+
+        <div> 
+            <label for="edit_photo">Photo</label>
+            <input type="file" id="edit_photo" name="photo">
+        </div>
 
         <div>
             <label for="edit_name">Name</label>
