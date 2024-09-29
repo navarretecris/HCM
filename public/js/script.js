@@ -159,6 +159,38 @@ if (currentPath === "/books") {
     });
 }
 
+if (currentPath === "/loans") {
+    document.querySelectorAll(".edit-btn").forEach((button) => {
+        button.addEventListener("click", function () {
+            const card = this.closest(".user-card");
+            const userName = card.querySelector("h3").innerText.split(": ")[1];
+            const bookTitle = card.querySelector("p:nth-child(2)").innerText.split(": ")[1];
+            const bookAuthor = card.querySelector("p:nth-child(3)").innerText.split(": ")[1];
+            const language = card.querySelector("p:nth-child(4)").innerText.split(": ")[1];
+            const loanDate = card.querySelector("p:nth-child(5)").innerText.split(": ")[1];
+            const endDate = card.querySelector("p:nth-child(6)").innerText.split(": ")[1];
+            const returnDate = card.querySelector("p:nth-child(7)").innerText.split(": ")[1];
+            const status = card.querySelector("p:nth-child(8)").innerText.split(": ")[1];
+            const id = card.querySelector("p:nth-child(9)").innerText.split(": ")[1];
+
+            
+            document.getElementById("user_name").value = userName;
+            document.getElementById("book_title").value = bookTitle;
+            document.getElementById("book_author").value = bookAuthor;
+            document.getElementById("language").value = language;
+            document.getElementById("loan_date").value = loanDate;
+            document.getElementById("end_date").value = endDate;
+            document.getElementById("return_date").value = returnDate;
+            document.getElementById("edit_status").value = status;
+            document.getElementById("id").value = id;
+
+            const baseUrl = document.getElementById("editForm").getAttribute("data-action-base");
+            document.getElementById("editForm").action = `${baseUrl}/${id}`;
+            document.getElementById("editModal").style.display = "flex";
+        });
+    });
+}
+
 document
     .querySelector(".close-btn-actualizar")
     .addEventListener("click", function () {

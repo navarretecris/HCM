@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\LoanController;
 
 
 Route::get('/', function () {
@@ -21,11 +22,13 @@ Route::middleware('auth')->group(function () {
     Route::resources([
         'users' => UserController::class,
         'books' => BookController::class,
+        'loans' => LoanController::class,
        
     ]);
 
     Route::post('users/search', [UserController::class, 'search']);
-    Route::post('books/search', [BookController::class, 'search']);   
+    Route::post('books/search', [BookController::class, 'search']);
+    Route::post('loans/search', [LoanController::class, 'search']);   
 
 });
 

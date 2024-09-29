@@ -33,4 +33,10 @@ class Book extends Model
             ->orWhere('isbn', 'LIKE', '%'.$query.'%');
         }
     }
+
+    public function books(){
+        return $this->belongsToMany(Book::class, 'loans')
+            ->withPivot('loan_date', 'end_date', 'return_date', 'status')
+            ->withTimestamps();
+    }
 }
